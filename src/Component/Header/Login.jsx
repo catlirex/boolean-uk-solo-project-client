@@ -4,7 +4,8 @@ import { APP_COLOR } from "../../consistent";
 import styled from "styled-components";
 import useStore from "../../store";
 import { signOut } from "../../API/userFunction";
-import { logDOM } from "@testing-library/react";
+import { useState } from "react";
+import UserMenu from "./UserMenu";
 
 const ColoredButton = withStyles(() => ({
   root: {
@@ -37,6 +38,7 @@ const StyleDiv = styled.div`
 export default function Login() {
   const loginUser = useStore((state) => state.loginUser);
   const logoutUser = useStore((state) => state.logoutUser);
+  const [displayMenu, setDisplayMenu] = useState(false);
 
   const handleSignOut = () => {
     signOut().then((res) => {
@@ -47,9 +49,10 @@ export default function Login() {
   return (
     <StyleDiv>
       <ColoredButton onClick={() => handleSignOut()}>Sign Out</ColoredButton>
-      <div>
+      <div onMouseEnter={() => setDisplayMenu(true)}>
         <img className="avatar" src={loginUser.avatar}></img>
       </div>
+      <UserMenu />
     </StyleDiv>
   );
 }
