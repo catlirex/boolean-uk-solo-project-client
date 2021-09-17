@@ -37,3 +37,11 @@ export function checkUserToken() {
     (response) => response.json()
   );
 }
+
+export function getUserChannel() {
+  return fetch(`${DB_URL}/user/channelList`, { credentials: "include" })
+    .then((response) => response.json())
+    .catch((err) => {
+      throw err;
+    });
+}

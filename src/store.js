@@ -7,6 +7,9 @@ const useStore = create((set, get) => ({
   loginUser: null,
   logoutUser: () => set({ loginUser: null }),
   setLoginUser: (newRegUser) => set({ loginUser: newRegUser }),
+  selectedChannel: null,
+  setSelectedChannel: (channelDetail) =>
+    set({ selectedChannel: channelDetail }),
 }));
 
 export default useStore;

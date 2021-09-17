@@ -21,22 +21,22 @@ function LoginModal({ className }) {
   const closeModal = useStore((store) => store.closeModal);
   const history = useHistory();
 
-  function handleLogin(e) {
+  async function handleLogin(e) {
     e.preventDefault();
     const loginCredentials = {
       email: e.target.email.value,
       password: e.target.password.value,
     };
-    getUserToken(loginCredentials).then((data) => {
-      if (data) {
-        setLoginUser(data.user);
-        document.cookie = `token=${data.token}`;
-        closeModal();
-      } else {
-        const errorMsg = document.querySelector(".error");
-        errorMsg.innerHTML = "Email/Password Incorrect";
-      }
-    });
+    const data = await getUserToken(loginCredentials);
+
+    if (data) {
+      setLoginUser(data.user);
+      document.cookie = `token=${data.token}`;
+      closeModal();
+    } else {
+      const errorMsg = document.querySelector(".error");
+      errorMsg.innerHTML = "Email/Password Incorrect";
+    }
   }
 
   return (
