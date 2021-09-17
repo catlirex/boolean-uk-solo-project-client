@@ -36,7 +36,7 @@ function App() {
         <Route path="/createChannel" exact>
           <CreateChannelPage />
         </Route>
-        <Route path="/channel/:ChannelId">
+        <Route path="/channel/:channelId">
           <ChannelPage />
         </Route>
 

@@ -13,3 +13,9 @@ export function createChannel(newChannelData) {
     return response.json();
   });
 }
+export function getChannelDetail(id) {
+  return fetch(`${DB_URL}/channel/${id}`).then((response) => {
+    if (!response.ok) return null;
+    return response.json();
+  });
+}

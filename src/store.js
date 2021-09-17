@@ -10,6 +10,11 @@ const useStore = create((set, get) => ({
   selectedChannel: null,
   setSelectedChannel: (channelDetail) =>
     set({ selectedChannel: channelDetail }),
+  selectedChannelPosts: null,
+  setSelectChannelPost: (posts) => set({ selectedChannelPosts: posts }),
+  errorMsg: null,
+  setErrorMsg: (error) => set({ errorMsg: error }),
+  clearErrorMsg: () => set({ errorMsg: null }),
 }));
 
 export default useStore;

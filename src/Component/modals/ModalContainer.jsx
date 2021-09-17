@@ -3,11 +3,13 @@ import { APP_COLOR } from "../../consistent";
 import useStore from "../../store";
 import LoginModal from "./LoginModal";
 import SignUpModal from "./SignupModal";
+import ErrorModal from "./ErrorMsg";
 
 const modals = {
   "": null,
   login: LoginModal,
   signUp: SignUpModal,
+  error: ErrorModal,
 };
 
 function ModalContainer({ className }) {
