@@ -13,3 +13,14 @@ export function createPost(newPostData) {
     return response.json();
   });
 }
+
+export function getPost(channelId, sort) {
+  if (sort)
+    return fetch(`${DB_URL}/post/channel/${channelId}?sort=${sort}`).then(
+      (res) => res.json()
+    );
+  else
+    return fetch(`${DB_URL}/post/channel/${channelId}`).then((res) =>
+      res.json()
+    );
+}

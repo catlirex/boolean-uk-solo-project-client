@@ -5,7 +5,7 @@ import useStore from "../store";
 import { APP_COLOR } from "../consistent";
 import styled from "styled-components";
 import CreatePost from "../Component/Channel/CreatePost";
-
+import PostsContainer from "../Component/Channel/PostsContainer";
 const StyleMain = styled.main`
   .banner {
     width: 100%;
@@ -73,7 +73,7 @@ export default function ChannelPage() {
         <div className="two-col">
           <section>
             <CreatePost />
-            post body
+            <PostsContainer />
           </section>
           <aside>
             <h3>About {selectedChannel.name}</h3>
