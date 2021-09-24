@@ -7,6 +7,7 @@ import styled from "styled-components";
 import CreatePost from "../Component/Channel/CreatePost";
 
 const StyleMain = styled.main`
+  width: 100%;
   .banner {
     width: 100%;
     height: 200px;
