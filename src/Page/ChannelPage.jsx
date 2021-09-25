@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { getChannelDetail } from "../API/channelFunction";
 import useStore from "../store";
@@ -8,6 +8,11 @@ import CreatePost from "../Component/Channel/CreatePost";
 import PostsContainer from "../Component/Channel/PostsContainer";
 import { withStyles } from "@material-ui/core/styles";
 import Button from "@material-ui/core/Button";
+import {
+  getUserChannelRelation,
+  createUserChannelRelation,
+  delUserChannelRelation,
+} from "../API/userFunction";
 
 const ColoredButton = withStyles(() => ({
   root: {
@@ -81,6 +86,16 @@ export default function ChannelPage() {
   const setModal = useStore((state) => state.setModal);
   const setSelectedChannel = useStore((state) => state.setSelectedChannel);
   const selectedChannel = useStore((state) => state.selectedChannel);
+  const [userChannelRelation, setUserChannelRelation] = useState(null);
+  const loginUser = useStore((state) => state.loginUser);
+
+  useEffect(() => {
+    if (!loginUser || !selectedChannel) return setUserChannelRelation(null);
+    getUserChannelRelation(selectedChannel.id).then((connection) => {
+      console.log("relation", connection);
+      if (connection.connection) setUserChannelRelation(connection.connection);
+    });
+  }, [loginUser, selectedChannel]);
 
   useEffect(() => {
     getChannelDetail(channelId).then((data) => {
@@ -93,6 +108,22 @@ export default function ChannelPage() {
       }
     });
   }, []);
+
+  const joinChannel = () => {
+    if (!loginUser) return setModal("login");
+    createUserChannelRelation(selectedChannel.id).then((res) => {
+      console.log(res);
+      setUserChannelRelation(res);
+    });
+  };
+
+  const leaveChannel = () => {
+    if (!loginUser) return setModal("login");
+    delUserChannelRelation(selectedChannel.id).then(() =>
+      setUserChannelRelation(null)
+    );
+  };
+
   if (!selectedChannel)
     return (
       <StyleMain>
@@ -110,7 +141,15 @@ export default function ChannelPage() {
             <h1>{selectedChannel.name}</h1>
             <h2>@{selectedChannel.id}</h2>
           </section>
-          <ColoredButton>Join Channel</ColoredButton>
+          {userChannelRelation ? (
+            <ColoredButton onClick={() => leaveChannel()}>
+              Leave Channel
+            </ColoredButton>
+          ) : (
+            <ColoredButton onClick={() => joinChannel()}>
+              Join Channel
+            </ColoredButton>
+          )}
         </div>
         <div className="two-col">
           <section className="post-container">

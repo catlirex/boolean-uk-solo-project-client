@@ -45,3 +45,40 @@ export function getUserChannel() {
       throw err;
     });
 }
+
+export function getUserChannelRelation(channelId) {
+  return fetch(`${DB_URL}/user/${channelId}/channelConnection`, {
+    credentials: "include",
+  })
+    .then((response) => response.json())
+    .catch((err) => {
+      throw err;
+    });
+}
+
+export function createUserChannelRelation(channelId) {
+  return fetch(`${DB_URL}/user/${channelId}/joinChannel`, {
+    method: "POST",
+    credentials: "include",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({}),
+  }).then((response) => {
+    if (!response.ok) return null;
+    return response.json();
+  });
+}
+
+export function delUserChannelRelation(channelId) {
+  return fetch(`${DB_URL}/user/${channelId}/leaveChannel`, {
+    method: "DELETE",
+    credentials: "include",
+    headers: {
+      "Content-Type": "application/json",
+    },
+  }).then((response) => {
+    if (!response.ok) return null;
+    return response.json();
+  });
+}

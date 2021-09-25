@@ -44,11 +44,11 @@ export default function VideoPost({ post }) {
         {post.video.includes("youtube") ? (
           <iframe
             src={`https://www.youtube.com/embed/${videoId}`}
-            frameborder="0"
-            allowfullscreen
+            frameBorder="0"
+            allowFullScreen
           ></iframe>
         ) : (
-          <iframe frameborder="0" allowfullscreen src={post.video}></iframe>
+          <iframe frameBorder="0" allowFullScreen src={post.video}></iframe>
         )}
       </div>
       <PostFoot post={post} />
