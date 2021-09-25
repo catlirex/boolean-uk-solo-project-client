@@ -15,7 +15,6 @@ const modals = {
 function ModalContainer({ className }) {
   const modal = useStore((store) => store.modal);
   const closeModal = useStore((store) => store.closeModal);
-
   const Modal = modals[modal];
 
   if (!modal) return null;

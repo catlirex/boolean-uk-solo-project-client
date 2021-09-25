@@ -8,6 +8,7 @@ import PostList from "./PostList";
 import styled from "styled-components";
 import useStore from "../../store";
 import { getPost } from "../../API/postFunction";
+
 const StyleContainer = styled.div`
   padding: 0 30px;
 `;

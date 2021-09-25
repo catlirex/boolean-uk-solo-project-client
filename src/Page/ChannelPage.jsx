@@ -7,6 +7,10 @@ import styled from "styled-components";
 import CreatePost from "../Component/Channel/CreatePost";
 import PostsContainer from "../Component/Channel/PostsContainer";
 const StyleMain = styled.main`
+  .two-col {
+    display: grid;
+    grid-template-columns: 1fr 250px;
+  }
   .banner {
     width: 100%;
     height: 200px;
@@ -25,14 +29,22 @@ const StyleMain = styled.main`
     align-items: center;
     max-inline-size: fit-content;
   }
-  .two-col {
-    display: grid;
-    grid-template-columns: 1fr 250px;
-  }
+
   aside {
     background-color: ${APP_COLOR.paleGreen};
     border-radius: 10px;
     padding: 10px;
+  }
+  .post-container {
+    width: 100%;
+  }
+  @media only screen and (max-width: 700px) {
+    aside {
+      display: none;
+    }
+    .two-col {
+      display: block;
+    }
   }
 `;
 
@@ -71,7 +83,7 @@ export default function ChannelPage() {
           <h2>@{selectedChannel.id}</h2>
         </section>
         <div className="two-col">
-          <section>
+          <section className="post-container">
             <CreatePost />
             <PostsContainer />
           </section>

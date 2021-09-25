@@ -4,6 +4,7 @@ import styled from "styled-components";
 import useStore from "../../store";
 import { useHistory } from "react-router-dom";
 import { getUserToken } from "../../API/userFunction";
+import { useEffect } from "react";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -20,6 +21,10 @@ function LoginModal({ className }) {
   const setLoginUser = useStore((state) => state.setLoginUser);
   const closeModal = useStore((store) => store.closeModal);
   const history = useHistory();
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
 
   async function handleLogin(e) {
     e.preventDefault();
