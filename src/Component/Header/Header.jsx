@@ -4,6 +4,7 @@ import useStore from "../../store";
 import NoLogin from "./NoLogin";
 import Login from "./Login.jsx";
 import { APP_COLOR } from "../../consistent";
+import { useHistory } from "react-router-dom";
 
 const StyleHeader = styled.header`
   .container {
@@ -22,11 +23,12 @@ const StyleHeader = styled.header`
 
 export default function Header() {
   const loginUser = useStore((state) => state.loginUser);
-  console.log(loginUser);
+  const history = useHistory();
+
   return (
     <StyleHeader>
       <div className="wrapper container">
-        <img className="logo" src={logo} />
+        <img className="logo" src={logo} onClick={() => history.push("/")} />
         {loginUser ? <Login /> : <NoLogin />}
       </div>
     </StyleHeader>

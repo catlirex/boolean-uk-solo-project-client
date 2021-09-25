@@ -43,3 +43,7 @@ export function saveVote(postId, voteOption, voteNum) {
     return response.json();
   });
 }
+
+export function getPosts() {
+  return fetch(`${DB_URL}/post`).then((res) => res.json());
+}

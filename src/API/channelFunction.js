@@ -19,3 +19,10 @@ export function getChannelDetail(id) {
     return response.json();
   });
 }
+
+export function getChannels() {
+  return fetch(`${DB_URL}/channel`).then((response) => {
+    if (!response.ok) return null;
+    return response.json();
+  });
+}
