@@ -6,10 +6,12 @@ import Login from "./Login.jsx";
 import { APP_COLOR } from "../../consistent";
 
 const StyleHeader = styled.header`
-  display: grid;
-  grid-auto-flow: column;
-  justify-content: space-between;
-  align-items: center;
+  .container {
+    display: grid;
+    grid-auto-flow: column;
+    justify-content: space-between;
+    align-items: center;
+  }
   background-color: ${APP_COLOR.darkBlue};
   .logo {
     width: 100px;
@@ -23,8 +25,10 @@ export default function Header() {
   console.log(loginUser);
   return (
     <StyleHeader>
-      <img className="logo" src={logo} />
-      {loginUser ? <Login /> : <NoLogin />}
+      <div className="wrapper container">
+        <img className="logo" src={logo} />
+        {loginUser ? <Login /> : <NoLogin />}
+      </div>
     </StyleHeader>
   );
 }

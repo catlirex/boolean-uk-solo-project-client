@@ -9,6 +9,7 @@ import MyChannelPage from "./Page/MyChannelPage";
 import MyPostsPage from "./Page/MyPostsPage";
 import CreateChannelPage from "./Page/CreateChannelPage.jsx";
 import ChannelPage from "./Page/ChannelPage";
+import "./index.css";
 require("dotenv").config();
 
 function App() {
@@ -20,31 +21,33 @@ function App() {
   return (
     <div className="App">
       <Header />
-      <Switch>
-        <Route path="/" exact>
-          <HomePage />
-        </Route>
-        <Route path="/Home" exact>
-          <Redirect to="/" />
-        </Route>
-        <Route path="/MyChannels" exact>
-          <MyChannelPage />
-        </Route>
-        <Route path="/MyPosts" exact>
-          <MyPostsPage />
-        </Route>
-        <Route path="/createChannel" exact>
-          <CreateChannelPage />
-        </Route>
-        <Route path="/channel/:channelId">
-          <ChannelPage />
-        </Route>
+      <div className="wrapper">
+        <Switch>
+          <Route path="/" exact>
+            <HomePage />
+          </Route>
+          <Route path="/Home" exact>
+            <Redirect to="/" />
+          </Route>
+          <Route path="/MyChannels" exact>
+            <MyChannelPage />
+          </Route>
+          <Route path="/MyPosts" exact>
+            <MyPostsPage />
+          </Route>
+          <Route path="/createChannel" exact>
+            <CreateChannelPage />
+          </Route>
+          <Route path="/channel/:channelId">
+            <ChannelPage />
+          </Route>
 
-        <Route>
-          <h3>Error 404</h3>
-        </Route>
-      </Switch>
-      <ModalContainer />
+          <Route>
+            <h3>Error 404</h3>
+          </Route>
+        </Switch>
+        <ModalContainer />
+      </div>
     </div>
   );
 }
