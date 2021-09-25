@@ -2,6 +2,8 @@ import styled from "styled-components";
 import { APP_COLOR } from "../../consistent";
 import { withStyles } from "@material-ui/core/styles";
 import Button from "@material-ui/core/Button";
+import { delUserChannelRelation } from "../../API/userFunction";
+import { useState } from "react";
 
 const StyleLi = styled.li`
   display: grid;
@@ -39,9 +41,23 @@ const ColoredButton = withStyles(() => ({
   },
 }))(Button);
 
-export default function ChannelCard({ channelDetail }) {
+export default function ChannelCard({
+  channelDetail,
+  setUserChannels,
+  userChannels,
+}) {
   const { channelId, role, channel } = channelDetail;
   const { avatar, name } = channel;
+  const [leftChannel, setLeftChannel] = useState(false);
+
+  const leaveChannel = () => {
+    delUserChannelRelation(channelId).then(() => {
+      console.log(userChannels);
+      setLeftChannel(true);
+    });
+  };
+
+  if (leftChannel) return null;
 
   return (
     <StyleLi>
@@ -53,7 +69,9 @@ export default function ChannelCard({ channelDetail }) {
       </div>
       <div className="action-item">
         {role === "member" ? (
-          <ColoredButton>Leave Channel</ColoredButton>
+          <ColoredButton onClick={() => leaveChannel()}>
+            Leave Channel
+          </ColoredButton>
         ) : null}
         {role === "owner" ? (
           <>

@@ -43,7 +43,6 @@ export default function MyChannelPage() {
   const setModal = useStore((state) => state.setModal);
   const [userChannels, setUserChannels] = useState(undefined);
   const history = useHistory();
-  console.log("userChannels", userChannels);
   useEffect(() => {
     getUserChannel()
       .then((res) => setUserChannels(res.data))
@@ -54,9 +53,7 @@ export default function MyChannelPage() {
     <StyleMain>
       {userChannels === undefined ? <h1>Loading</h1> : null}
       {userChannels === null ? <h1>You haven't join any channel</h1> : null}
-      {userChannels ? (
-        <h1>You belong to {userChannels.length} channel(s)</h1>
-      ) : null}
+      {userChannels ? <h1>You belong to following channel(s)</h1> : null}
       <ColoredButton onClick={() => history.push("/createChannel")}>
         + Create
       </ColoredButton>
@@ -66,6 +63,8 @@ export default function MyChannelPage() {
               <ChannelCard
                 channelDetail={channelDetail}
                 key={channelDetail.channelId}
+                setUserChannels={setUserChannels}
+                userChannels={userChannels}
               />
             ))
           : null}
