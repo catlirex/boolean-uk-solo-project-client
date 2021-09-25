@@ -7,6 +7,7 @@ import ArrowDropDownIcon from "@mui/icons-material/ArrowDropDown";
 import useStore from "../../store";
 import SmsIcon from "@mui/icons-material/Sms";
 import { Button } from "@material-ui/core";
+import { saveVote } from "../../API/postFunction";
 
 const StyleFooter = styled.footer`
   padding-top: 5px;
@@ -37,15 +38,24 @@ const StyleFooter = styled.footer`
 
 export default function PostFoot({ post }) {
   const [vote, setVote] = React.useState(null);
-  const loginUser = useStore((state) => state.loginUsers);
+  const loginUser = useStore((state) => state.loginUser);
   const setModal = useStore((state) => state.setModal);
-  console.log("loginUser", loginUser);
+  const selectedChannelPosts = useStore((state) => state.selectedChannelPosts);
+  const setSelectChannelPost = useStore((state) => state.setSelectChannelPost);
 
-  const handleAlignment = (event, selectedVote) => {
+  const handleVote = (event, selectedVote) => {
     if (!loginUser) return setModal("login");
     setVote(selectedVote);
     console.log(selectedVote);
-    // saveVote(selectedVote)
+    if (selectedVote)
+      saveVote(post.id, selectedVote, post.vote).then((updatedPost) => {
+        const updatedList = selectedChannelPosts.map((post) => {
+          if (post.id === updatedPost.id) return updatedPost;
+          else return post;
+        });
+
+        setSelectChannelPost(updatedList);
+      });
   };
 
   return (
@@ -54,7 +64,7 @@ export default function PostFoot({ post }) {
         className="vote-group"
         value={vote}
         exclusive
-        onChange={handleAlignment}
+        onChange={handleVote}
         aria-label="vote"
       >
         <ToggleButton className="vote-btn" value="up" aria-label="vote up">

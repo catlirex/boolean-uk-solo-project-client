@@ -33,16 +33,17 @@ function LoginModal({ className }) {
       password: e.target.password.value,
     };
     const data = await getUserToken(loginCredentials);
-
+    console.log("login", data);
     if (data) {
       setLoginUser(data.user);
-      document.cookie = `token=${data.token}`;
+      document.cookie = `token=${data.token}; path=/`;
       closeModal();
     } else {
       const errorMsg = document.querySelector(".error");
       errorMsg.innerHTML = "Email/Password Incorrect";
     }
   }
+  console.log(loginUser);
 
   return (
     <div className={className}>

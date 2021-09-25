@@ -24,3 +24,22 @@ export function getPost(channelId, sort) {
       res.json()
     );
 }
+
+export function saveVote(postId, voteOption, voteNum) {
+  let newVoteNum = null;
+
+  if (voteOption === "up") newVoteNum = parseInt(voteNum) + 1;
+  if (voteOption === "down") newVoteNum = parseInt(voteNum) - 1;
+
+  return fetch(`${DB_URL}/post/${postId}`, {
+    method: "PATCH",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    credentials: "include",
+    body: JSON.stringify({ vote: newVoteNum }),
+  }).then((response) => {
+    if (!response.ok) return null;
+    return response.json();
+  });
+}

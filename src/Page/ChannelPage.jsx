@@ -6,6 +6,29 @@ import { APP_COLOR } from "../consistent";
 import styled from "styled-components";
 import CreatePost from "../Component/Channel/CreatePost";
 import PostsContainer from "../Component/Channel/PostsContainer";
+import { withStyles } from "@material-ui/core/styles";
+import Button from "@material-ui/core/Button";
+
+const ColoredButton = withStyles(() => ({
+  root: {
+    placeSelf: "center",
+    height: "50px",
+    width: "150px",
+    justifySelf: "right",
+    borderBottomLeftRadius: "10px",
+    borderBottomRightRadius: "10px",
+    borderTopLeftRadius: "10px",
+    borderTopRightRadius: "10px",
+    margin: "10px",
+    borderRadius: 0,
+    color: APP_COLOR.darkBlue,
+    backgroundColor: APP_COLOR.sharpGreen,
+    "&:hover": {
+      backgroundColor: APP_COLOR.darkBlue,
+      color: APP_COLOR.sharpGreen,
+    },
+  },
+}))(Button);
 const StyleMain = styled.main`
   .two-col {
     display: grid;
@@ -37,6 +60,10 @@ const StyleMain = styled.main`
   }
   .post-container {
     width: 100%;
+  }
+  .sub-header {
+    display: grid;
+    grid-auto-flow: column;
   }
   @media only screen and (max-width: 700px) {
     aside {
@@ -77,11 +104,14 @@ export default function ChannelPage() {
     return (
       <StyleMain>
         <img className="banner" src={selectedChannel.image}></img>
-        <section className="channel-info">
-          <img className="avatar" src={selectedChannel.avatar}></img>
-          <h1>{selectedChannel.name}</h1>
-          <h2>@{selectedChannel.id}</h2>
-        </section>
+        <div className="sub-header">
+          <section className="channel-info">
+            <img className="avatar" src={selectedChannel.avatar}></img>
+            <h1>{selectedChannel.name}</h1>
+            <h2>@{selectedChannel.id}</h2>
+          </section>
+          <ColoredButton>Join Channel</ColoredButton>
+        </div>
         <div className="two-col">
           <section className="post-container">
             <CreatePost />
