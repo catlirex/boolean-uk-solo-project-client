@@ -8,12 +8,17 @@ import useStore from "../../store";
 import SmsIcon from "@mui/icons-material/Sms";
 import { Button } from "@material-ui/core";
 import { saveVote } from "../../API/postFunction";
+import { APP_COLOR } from "../../consistent";
 
 const StyleFooter = styled.footer`
   padding-top: 5px;
   width: 100%;
   display: grid;
   grid-auto-flow: column;
+  border-bottom-left-radius: 20px;
+  border-bottom-right-radius: 20px;
+
+  background-color: ${APP_COLOR.paleGreen};
   .vote-group {
     width: 150px;
     display: grid;

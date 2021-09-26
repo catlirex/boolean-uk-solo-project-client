@@ -47,3 +47,21 @@ export function saveVote(postId, voteOption, voteNum) {
 export function getPosts() {
   return fetch(`${DB_URL}/post`).then((res) => res.json());
 }
+
+export function getPostDetail(id) {
+  return fetch(`${DB_URL}/post/${id}`).then((res) => res.json());
+}
+
+export function saveNewComment(postId, comment) {
+  return fetch(`${DB_URL}/post/${postId}/newComment`, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    credentials: "include",
+    body: JSON.stringify(comment),
+  }).then((response) => {
+    if (!response.ok) return null;
+    return response.json();
+  });
+}
