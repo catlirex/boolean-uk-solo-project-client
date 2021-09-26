@@ -44,6 +44,7 @@ export default function PostFoot({ post }) {
   const setSelectChannelPost = useStore((state) => state.setSelectChannelPost);
 
   const handleVote = (event, selectedVote) => {
+    event.stopPropagation();
     if (!loginUser) return setModal("login");
     setVote(selectedVote);
     console.log(selectedVote);

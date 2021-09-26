@@ -2,6 +2,7 @@ import PostFoot from "./PostFoot";
 import PostHeader from "./PostHeader";
 import styled from "styled-components";
 import { APP_COLOR } from "../../consistent";
+import { useHistory } from "react-router-dom";
 
 const StyleLi = styled.li`
   list-style: none;
@@ -14,9 +15,9 @@ const StyleLi = styled.li`
 `;
 
 export default function ImagePost({ post }) {
-  console.log(post);
+  const history = useHistory();
   return (
-    <StyleLi>
+    <StyleLi onClick={() => history.push(`/post/${post.id}`)}>
       <PostHeader post={post} />
       <h2>{post.title}</h2>
       {post.content ? <p>{post.content}</p> : null}

@@ -9,6 +9,7 @@ import MyChannelPage from "./Page/MyChannelPage";
 import MyPostsPage from "./Page/MyPostsPage";
 import CreateChannelPage from "./Page/CreateChannelPage.jsx";
 import ChannelPage from "./Page/ChannelPage";
+import PostDetailPage from "./Page/PostDetail";
 import "./index.css";
 require("dotenv").config();
 
@@ -40,6 +41,9 @@ function App() {
           </Route>
           <Route path="/channel/:channelId">
             <ChannelPage />
+          </Route>
+          <Route path="/post/:postId">
+            <PostDetailPage />
           </Route>
 
           <Route>
