@@ -15,6 +15,8 @@ const useStore = create((set, get) => ({
   errorMsg: null,
   setErrorMsg: (error) => set({ errorMsg: error }),
   clearErrorMsg: () => set({ errorMsg: null }),
+  homePagePost: null,
+  setHomePagePost: (postList) => set({ homePagePost: postList }),
 }));
 
 export default useStore;

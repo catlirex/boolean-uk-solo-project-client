@@ -7,6 +7,7 @@ import TextPost from "../Component/Post/TextPost";
 import { getChannels } from "../API/channelFunction";
 import styled from "styled-components";
 import { APP_COLOR } from "../consistent";
+import useStore from "../store";
 
 const StyleMain = styled.main`
   display: grid;
@@ -54,24 +55,24 @@ const StyleMain = styled.main`
 `;
 
 export default function HomePage() {
-  const [posts, setPosts] = useState(null);
+  const homePagePost = useStore((state) => state.homePagePost);
+  const setHomePagePost = useStore((state) => state.setHomePagePost);
   const [channels, setChannels] = useState(null);
   const history = useHistory();
 
   useEffect(() => {
-    getPosts().then((list) => setPosts(list));
+    getPosts().then((list) => setHomePagePost(list));
     getChannels().then((list) => setChannels(list));
   }, []);
 
-  console.log(posts);
-  if (!posts || !channels) return <h1>loading...</h1>;
+  if (!homePagePost || !channels) return <h1>loading...</h1>;
 
   return (
     <StyleMain>
       <section>
         <h1>Top Posts for Today:</h1>
         <ul className="post-ul">
-          {posts.map((post) => {
+          {homePagePost.map((post) => {
             if (post.image) return <ImagePost post={post} key={post.id} />;
             else if (post.video) return <VideoPost post={post} key={post.id} />;
             else return <TextPost post={post} key={post.id} />;

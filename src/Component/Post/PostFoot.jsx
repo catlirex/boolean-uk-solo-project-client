@@ -47,20 +47,31 @@ export default function PostFoot({ post }) {
   const setModal = useStore((state) => state.setModal);
   const selectedChannelPosts = useStore((state) => state.selectedChannelPosts);
   const setSelectChannelPost = useStore((state) => state.setSelectChannelPost);
+  const homePagePost = useStore((state) => state.homePagePost);
+  const setHomePagePost = useStore((state) => state.setHomePagePost);
 
   const handleVote = (event, selectedVote) => {
     event.stopPropagation();
     if (!loginUser) return setModal("login");
     setVote(selectedVote);
-    console.log(selectedVote);
+
     if (selectedVote)
       saveVote(post.id, selectedVote, post.vote).then((updatedPost) => {
-        const updatedList = selectedChannelPosts.map((post) => {
-          if (post.id === updatedPost.id) return updatedPost;
-          else return post;
-        });
+        if (homePagePost) {
+          const updatedList = homePagePost.map((post) => {
+            if (post.id === updatedPost.id) return updatedPost;
+            else return post;
+          });
+          setHomePagePost(updatedList);
+        }
 
-        setSelectChannelPost(updatedList);
+        if (selectedChannelPosts) {
+          const updatedList = selectedChannelPosts.map((post) => {
+            if (post.id === updatedPost.id) return updatedPost;
+            else return post;
+          });
+          setSelectChannelPost(updatedList);
+        }
       });
   };
 
