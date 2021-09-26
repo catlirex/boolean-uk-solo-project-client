@@ -20,7 +20,7 @@ export default function PostHeader({ post }) {
       <p>
         <strong> {post.user.email.split("@")[0]}</strong>
       </p>
-      <p>{post.postDate.split("T")[0]}</p>
+      {post.date ? <p>{post.date.split("T")[0]}</p> : null}
     </StyleHeader>
   );
 }

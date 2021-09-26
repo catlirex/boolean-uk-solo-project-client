@@ -33,7 +33,7 @@ const StyleForm = styled.form`
   padding: 20px 0;
 `;
 
-export default function CreateComment({ postId, setPostDetail, postDetail }) {
+export default function CreateComment({ setPostDetail, postDetail }) {
   const [value, setValue] = useState("");
   const loginUser = useStore((state) => state.loginUser);
   const setModal = useStore((state) => state.setModal);
@@ -45,7 +45,7 @@ export default function CreateComment({ postId, setPostDetail, postDetail }) {
   const handleSubmit = (e) => {
     e.preventDefault();
     if (!loginUser) return setModal("login");
-    saveNewComment(postId, { content: value }).then((newComment) => {
+    saveNewComment(postDetail.id, { content: value }).then((newComment) => {
       console.log(newComment);
       setPostDetail({
         ...postDetail,

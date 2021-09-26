@@ -65,3 +65,17 @@ export function saveNewComment(postId, comment) {
     return response.json();
   });
 }
+
+export function saveNewReply(commentId, reply) {
+  return fetch(`${DB_URL}/post/${commentId}/newReply`, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    credentials: "include",
+    body: JSON.stringify(reply),
+  }).then((response) => {
+    if (!response.ok) return null;
+    return response.json();
+  });
+}

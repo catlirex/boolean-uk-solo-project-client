@@ -9,6 +9,7 @@ import { getVideoId } from "../Component/Post/VideoPost";
 import { withStyles } from "@material-ui/core/styles";
 import Button from "@material-ui/core/Button";
 import CreateComment from "../Component/Comment/CreateComment";
+import CommentList from "../Component/Comment/CommentList";
 
 const ColoredButton = withStyles(() => ({
   root: {
@@ -32,12 +33,17 @@ const ColoredButton = withStyles(() => ({
 }))(Button);
 
 const StyleMain = styled.main`
+  padding: 0 20px;
   .post-content {
     padding: 20px;
     border-top-left-radius: 20px;
     border-top-right-radius: 20px;
     background-color: ${APP_COLOR.darkBlue};
     color: ${APP_COLOR.white};
+    .post-img {
+      width: 100%;
+      padding-top: 10px;
+    }
   }
   .channel-info {
     padding: 20px 0px;
@@ -68,7 +74,6 @@ export default function PostDetailPage() {
       else setPostDetail(data);
     });
   }, []);
-  console.log(postDetail);
 
   if (postDetail === null)
     return (
@@ -98,7 +103,9 @@ export default function PostDetailPage() {
           <h2>{postDetail.title}</h2>
           <div className="content-container">
             {postDetail.content ? <p>{postDetail.content}</p> : null}
-            {postDetail.image ? <img src={postDetail.image} /> : null}
+            {postDetail.image ? (
+              <img src={postDetail.image} className="post-img" />
+            ) : null}
             {postDetail.video ? (
               <div className="video-container">
                 {postDetail.video.includes("youtube") ? (
@@ -121,10 +128,10 @@ export default function PostDetailPage() {
         <PostFoot post={postDetail} />
         <section className="comment-section">
           <CreateComment
-            postId={postDetail.id}
             postDetail={postDetail}
             setPostDetail={setPostDetail}
           />
+          <CommentList postDetail={postDetail} setPostDetail={setPostDetail} />
         </section>
       </StyleMain>
     );
