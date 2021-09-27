@@ -43,7 +43,10 @@ export default function MyChannelPage() {
   const setModal = useStore((state) => state.setModal);
   const [userChannels, setUserChannels] = useState(undefined);
   const history = useHistory();
+
   useEffect(() => {
+    if (!loginUser) return setModal("login");
+
     getUserChannel()
       .then((res) => setUserChannels(res.data))
       .catch(() => setModal("login"));

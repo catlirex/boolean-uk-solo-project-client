@@ -79,3 +79,13 @@ export function saveNewReply(commentId, reply) {
     return response.json();
   });
 }
+
+export function delPost(id) {
+  return fetch(`${DB_URL}/post/${id}`, {
+    method: "DELETE",
+    credentials: "include",
+  }).then((response) => {
+    if (!response.ok) return null;
+    return response.json();
+  });
+}

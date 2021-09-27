@@ -82,3 +82,9 @@ export function delUserChannelRelation(channelId) {
     return response.json();
   });
 }
+
+export function getUserPosts() {
+  return fetch(`${DB_URL}/user/myPost`, { credentials: "include" }).then(
+    (response) => response.json()
+  );
+}

@@ -6,6 +6,7 @@ import useStore from "../../store";
 import { signOut } from "../../API/userFunction";
 import { useState } from "react";
 import UserMenu from "./UserMenu";
+import { useHistory } from "react-router-dom";
 
 const ColoredButton = withStyles(() => ({
   root: {
@@ -39,10 +40,12 @@ export default function Login() {
   const loginUser = useStore((state) => state.loginUser);
   const logoutUser = useStore((state) => state.logoutUser);
   const [displayMenu, setDisplayMenu] = useState(false);
+  const history = useHistory();
 
   const handleSignOut = () => {
     signOut().then((res) => {
       logoutUser();
+      history.push("/");
     });
   };
 
