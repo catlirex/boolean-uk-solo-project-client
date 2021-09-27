@@ -109,6 +109,8 @@ export default function ChannelPage() {
     });
   }, []);
 
+  console.log(selectedChannel);
+
   const joinChannel = () => {
     if (!loginUser) return setModal("login");
     createUserChannelRelation(selectedChannel.id).then((res) => {

@@ -4,6 +4,7 @@ import { withStyles } from "@material-ui/core/styles";
 import Button from "@material-ui/core/Button";
 import { delUserChannelRelation } from "../../API/userFunction";
 import { useState } from "react";
+import { getChannelDetail, delChannel } from "../../API/channelFunction";
 
 const StyleLi = styled.li`
   display: grid;
@@ -52,7 +53,12 @@ export default function ChannelCard({
 
   const leaveChannel = () => {
     delUserChannelRelation(channelId).then(() => {
-      console.log(userChannels);
+      setLeftChannel(true);
+    });
+  };
+
+  const handleDel = () => {
+    delChannel(channelId).then((removed) => {
       setLeftChannel(true);
     });
   };
@@ -75,7 +81,7 @@ export default function ChannelCard({
         ) : null}
         {role === "owner" ? (
           <>
-            <ColoredButton>Delete Channel</ColoredButton>
+            <ColoredButton onClick={handleDel}>Delete Channel</ColoredButton>
             <ColoredButton>Add modurator</ColoredButton>
           </>
         ) : null}

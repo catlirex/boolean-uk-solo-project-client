@@ -26,3 +26,16 @@ export function getChannels() {
     return response.json();
   });
 }
+
+export function delChannel(channelId) {
+  return fetch(`${DB_URL}/channel/${channelId}`, {
+    method: "DELETE",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    credentials: "include",
+  }).then((response) => {
+    if (!response.ok) return null;
+    return response.json();
+  });
+}
