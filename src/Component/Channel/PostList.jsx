@@ -10,15 +10,36 @@ const StyleUl = styled.ul`
   gap: 20px;
 `;
 
-export default function PostList() {
+export default function PostList({ userChannelRelation }) {
   const selectedChannelPosts = useStore((state) => state.selectedChannelPosts);
   if (!selectedChannelPosts) return <h2>no post.. be the first one</h2>;
   return (
     <StyleUl>
       {selectedChannelPosts.map((post) => {
-        if (post.image) return <ImagePost post={post} key={post.id} />;
-        else if (post.video) return <VideoPost post={post} key={post.id} />;
-        else return <TextPost post={post} key={post.id} />;
+        if (post.image)
+          return (
+            <ImagePost
+              post={post}
+              key={post.id}
+              userChannelRelation={userChannelRelation}
+            />
+          );
+        else if (post.video)
+          return (
+            <VideoPost
+              post={post}
+              key={post.id}
+              userChannelRelation={userChannelRelation}
+            />
+          );
+        else
+          return (
+            <TextPost
+              post={post}
+              key={post.id}
+              userChannelRelation={userChannelRelation}
+            />
+          );
       })}
     </StyleUl>
   );

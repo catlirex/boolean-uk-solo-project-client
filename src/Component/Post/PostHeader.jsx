@@ -5,6 +5,10 @@ import { APP_COLOR } from "../../consistent";
 import { withStyles } from "@material-ui/core/styles";
 import Button from "@material-ui/core/Button";
 import { delPost } from "../../API/postFunction";
+import ToggleButton from "@mui/material/ToggleButton";
+import PushPinIcon from "@mui/icons-material/PushPin";
+import { useLocation } from "react-router-dom";
+import { updatePinned } from "../../API/postFunction";
 
 const ColoredButton = withStyles(() => ({
   root: {
@@ -47,13 +51,43 @@ const StyleHeader = styled.header`
   }
 `;
 
-export default function PostHeader({ post }) {
+export default function PostHeader({ post, userChannelRelation }) {
   const loginUser = useStore((state) => state.loginUser);
-
-  const handleDelete = () => {
-    delPost(post.id).then((removedPost) => {
+  const { pathname } = useLocation();
+  const pathString = pathname.toString();
+  const [selected, setSelected] = useState(post.pinned);
+  const handleDelete = (e) => {
+    e.stopPropagation();
+    delPost(post.id).then(() => {
       window.location.reload();
     });
+  };
+
+  console.log(userChannelRelation);
+
+  const getPinAction = () => {
+    if (!pathString.includes("/channel/")) return null;
+    if (
+      userChannelRelation &&
+      (userChannelRelation.role === "owner" ||
+        userChannelRelation.role === "modurator")
+    ) {
+      return (
+        <ToggleButton
+          value="pinned"
+          selected={selected}
+          onChange={(e) => {
+            e.stopPropagation();
+            updatePinned(post.id, !selected).then(() => {
+              setSelected(!selected);
+              window.location.reload();
+            });
+          }}
+        >
+          <PushPinIcon />
+        </ToggleButton>
+      );
+    }
   };
   return (
     <StyleHeader>
@@ -64,9 +98,12 @@ export default function PostHeader({ post }) {
         </p>
         {post.date ? <p>{post.date.split("T")[0]}</p> : null}
       </div>
-      {loginUser?.email === post.user.email && (
-        <ColoredButton onClick={handleDelete}>remove</ColoredButton>
-      )}
+      <div>
+        {loginUser?.email === post.user.email && (
+          <ColoredButton onClick={handleDelete}>remove</ColoredButton>
+        )}
+        {getPinAction()}
+      </div>
     </StyleHeader>
   );
 }

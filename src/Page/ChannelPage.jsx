@@ -92,7 +92,6 @@ export default function ChannelPage() {
   useEffect(() => {
     if (!loginUser || !selectedChannel) return setUserChannelRelation(null);
     getUserChannelRelation(selectedChannel.id).then((connection) => {
-      console.log("relation", connection);
       if (connection.connection) setUserChannelRelation(connection.connection);
     });
   }, [loginUser, selectedChannel]);
@@ -103,18 +102,14 @@ export default function ChannelPage() {
         setErrorMsg("Channel doesn't exist");
         setModal("error");
       } else {
-        console.log(data);
         setSelectedChannel(data);
       }
     });
   }, []);
 
-  console.log(selectedChannel);
-
   const joinChannel = () => {
     if (!loginUser) return setModal("login");
     createUserChannelRelation(selectedChannel.id).then((res) => {
-      console.log(res);
       setUserChannelRelation(res);
     });
   };
@@ -156,7 +151,7 @@ export default function ChannelPage() {
         <div className="two-col">
           <section className="post-container">
             <CreatePost />
-            <PostsContainer />
+            <PostsContainer userChannelRelation={userChannelRelation} />
           </section>
           <aside>
             <h3>About {selectedChannel.name}</h3>

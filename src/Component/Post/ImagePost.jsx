@@ -14,11 +14,11 @@ const StyleLi = styled.li`
   }
 `;
 
-export default function ImagePost({ post }) {
+export default function ImagePost({ post, userChannelRelation }) {
   const history = useHistory();
   return (
     <StyleLi onClick={() => history.push(`/post/${post.id}`)}>
-      <PostHeader post={post} />
+      <PostHeader post={post} userChannelRelation={userChannelRelation} />
       <h2>{post.title}</h2>
       {post.content ? <p>{post.content}</p> : null}
       <img src={post.image} />

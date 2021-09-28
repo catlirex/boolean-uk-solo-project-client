@@ -12,9 +12,18 @@ const StyleMain = styled.main`
   display: grid;
   grid-template-columns: 1fr 200px;
   align-items: center;
+  margin-right: auto;
+  margin-left: auto;
+  max-width: 900px;
+  padding-right: 10px;
+  padding-left: 10px;
+
   .channel-list {
     display: grid;
     gap: 10px;
+  }
+  .create-btn {
+    z-index: -1;
   }
 `;
 
@@ -57,7 +66,10 @@ export default function MyChannelPage() {
       {userChannels === undefined ? <h1>Loading</h1> : null}
       {userChannels === null ? <h1>You haven't join any channel</h1> : null}
       {userChannels ? <h1>You belong to following channel(s)</h1> : null}
-      <ColoredButton onClick={() => history.push("/createChannel")}>
+      <ColoredButton
+        onClick={() => history.push("/createChannel")}
+        className="create-btn"
+      >
         + Create
       </ColoredButton>
       <ul className="channel-list">

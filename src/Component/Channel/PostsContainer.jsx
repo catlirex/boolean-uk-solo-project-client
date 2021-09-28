@@ -13,7 +13,7 @@ const StyleContainer = styled.div`
   padding: 0 30px;
 `;
 
-export default function PostsContainer() {
+export default function PostsContainer({ userChannelRelation }) {
   const [order, setOrder] = React.useState("vote");
   const selectedChannel = useStore((state) => state.selectedChannel);
   const setSelectChannelPost = useStore((state) => state.setSelectChannelPost);
@@ -47,7 +47,7 @@ export default function PostsContainer() {
         </ToggleButton>
       </ToggleButtonGroup>
 
-      <PostList />
+      <PostList userChannelRelation={userChannelRelation} />
     </StyleContainer>
   );
 }

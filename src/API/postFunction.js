@@ -89,3 +89,17 @@ export function delPost(id) {
     return response.json();
   });
 }
+
+export function updatePinned(postId, isPinned) {
+  return fetch(`${DB_URL}/post/${postId}`, {
+    method: "PATCH",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    credentials: "include",
+    body: JSON.stringify({ pinned: isPinned }),
+  }).then((response) => {
+    if (!response.ok) return null;
+    return response.json();
+  });
+}

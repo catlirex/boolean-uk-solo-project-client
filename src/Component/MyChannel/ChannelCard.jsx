@@ -4,7 +4,8 @@ import { withStyles } from "@material-ui/core/styles";
 import Button from "@material-ui/core/Button";
 import { delUserChannelRelation } from "../../API/userFunction";
 import { useState } from "react";
-import { getChannelDetail, delChannel } from "../../API/channelFunction";
+import { delChannel } from "../../API/channelFunction";
+import { useHistory } from "react-router-dom";
 
 const StyleLi = styled.li`
   display: grid;
@@ -42,22 +43,22 @@ const ColoredButton = withStyles(() => ({
   },
 }))(Button);
 
-export default function ChannelCard({
-  channelDetail,
-  setUserChannels,
-  userChannels,
-}) {
+export default function ChannelCard({ channelDetail }) {
   const { channelId, role, channel } = channelDetail;
   const { avatar, name } = channel;
   const [leftChannel, setLeftChannel] = useState(false);
+  const history = useHistory();
 
-  const leaveChannel = () => {
+  const leaveChannel = (e) => {
+    e.stopPropagation();
+
     delUserChannelRelation(channelId).then(() => {
       setLeftChannel(true);
     });
   };
 
-  const handleDel = () => {
+  const handleDel = (e) => {
+    e.stopPropagation();
     delChannel(channelId).then((removed) => {
       setLeftChannel(true);
     });
@@ -66,7 +67,7 @@ export default function ChannelCard({
   if (leftChannel) return null;
 
   return (
-    <StyleLi>
+    <StyleLi onClick={() => history.push(`/channel/${channelId}`)}>
       <img className="avatar" src={avatar}></img>
       <div>
         <h2>{name}</h2>
