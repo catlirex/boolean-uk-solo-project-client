@@ -105,7 +105,7 @@ export default function ChannelPage() {
         setSelectedChannel(data);
       }
     });
-  }, []);
+  }, [channelId, setErrorMsg, setSelectedChannel, getChannelDetail]);
 
   const joinChannel = () => {
     if (!loginUser) return setModal("login");
@@ -131,10 +131,18 @@ export default function ChannelPage() {
   if (selectedChannel)
     return (
       <StyleMain>
-        <img className="banner" src={selectedChannel.image}></img>
+        <img
+          className="banner"
+          src={selectedChannel.image}
+          alt="channel banner"
+        ></img>
         <div className="sub-header">
           <section className="channel-info">
-            <img className="avatar" src={selectedChannel.avatar}></img>
+            <img
+              className="avatar"
+              src={selectedChannel.avatar}
+              alt="channel avatar"
+            ></img>
             <h1>{selectedChannel.name}</h1>
             <h2>@{selectedChannel.id}</h2>
           </section>

@@ -39,7 +39,6 @@ const StyleDiv = styled.div`
 export default function Login() {
   const loginUser = useStore((state) => state.loginUser);
   const logoutUser = useStore((state) => state.logoutUser);
-  const [displayMenu, setDisplayMenu] = useState(false);
   const history = useHistory();
 
   const handleSignOut = () => {
@@ -52,9 +51,9 @@ export default function Login() {
   return (
     <StyleDiv>
       <ColoredButton onClick={() => handleSignOut()}>Sign Out</ColoredButton>
-      <div onMouseEnter={() => setDisplayMenu(true)}>
-        <img className="avatar" src={loginUser.avatar}></img>
-      </div>
+
+      <img className="avatar" src={loginUser.avatar}></img>
+
       <UserMenu />
     </StyleDiv>
   );

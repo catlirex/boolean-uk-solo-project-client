@@ -28,7 +28,12 @@ export default function Header() {
   return (
     <StyleHeader>
       <div className="wrapper container">
-        <img className="logo" src={logo} onClick={() => history.push("/")} />
+        <img
+          className="logo"
+          alt="logo"
+          src={logo}
+          onClick={() => history.push("/")}
+        />
         {loginUser ? <Login /> : <NoLogin />}
       </div>
     </StyleHeader>

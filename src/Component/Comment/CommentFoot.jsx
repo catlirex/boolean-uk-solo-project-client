@@ -39,7 +39,13 @@ const StyleFooter = styled.footer`
   }
 `;
 
-export default function CommentFoot({ post, setShowReply, showReply }) {
+export default function CommentFoot({
+  post,
+  setShowReply,
+  showReply,
+  setPostDetail,
+  postDetail,
+}) {
   const [vote, setVote] = React.useState(null);
   const loginUser = useStore((state) => state.loginUser);
   const setModal = useStore((state) => state.setModal);
@@ -50,15 +56,9 @@ export default function CommentFoot({ post, setShowReply, showReply }) {
     event.stopPropagation();
     if (!loginUser) return setModal("login");
     setVote(selectedVote);
-    console.log(selectedVote);
     if (selectedVote)
       saveVote(post.id, selectedVote, post.vote).then((updatedPost) => {
-        const updatedList = selectedChannelPosts.map((post) => {
-          if (post.id === updatedPost.id) return updatedPost;
-          else return post;
-        });
-
-        setSelectChannelPost(updatedList);
+        setPostDetail(updatedPost);
       });
   };
 

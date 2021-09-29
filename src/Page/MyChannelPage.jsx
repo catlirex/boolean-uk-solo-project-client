@@ -59,7 +59,7 @@ export default function MyChannelPage() {
     getUserChannel()
       .then((res) => setUserChannels(res.data))
       .catch(() => setModal("login"));
-  }, [loginUser]);
+  }, [loginUser, setModal]);
 
   return (
     <StyleMain>

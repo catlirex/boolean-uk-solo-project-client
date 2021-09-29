@@ -3,8 +3,6 @@ import { TextField, Button } from "@material-ui/core";
 import styled from "styled-components";
 import { postUser } from "../../API/userFunction";
 import useStore from "../../store";
-import { useState } from "react";
-import { useHistory } from "react-router-dom";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -18,7 +16,6 @@ const useStyles = makeStyles((theme) => ({
 function SignUpModal({ className }) {
   const closeModal = useStore((store) => store.closeModal);
   const classes = useStyles();
-  const history = useHistory();
   const setLoginUser = useStore((state) => state.setLoginUser);
 
   const handleSubmit = (e) => {

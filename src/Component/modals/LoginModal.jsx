@@ -20,7 +20,6 @@ function LoginModal({ className }) {
   const loginUser = useStore((state) => state.loginUser);
   const setLoginUser = useStore((state) => state.setLoginUser);
   const closeModal = useStore((store) => store.closeModal);
-  const history = useHistory();
 
   useEffect(() => {
     window.scrollTo(0, 0);

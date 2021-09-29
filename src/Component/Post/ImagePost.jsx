@@ -21,7 +21,7 @@ export default function ImagePost({ post, userChannelRelation }) {
       <PostHeader post={post} userChannelRelation={userChannelRelation} />
       <h2>{post.title}</h2>
       {post.content ? <p>{post.content}</p> : null}
-      <img src={post.image} />
+      <img src={post.image} alt={post.title} />
       <PostFoot post={post} />
     </StyleLi>
   );

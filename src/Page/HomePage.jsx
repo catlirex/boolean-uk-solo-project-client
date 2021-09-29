@@ -63,7 +63,7 @@ export default function HomePage() {
   useEffect(() => {
     getPosts().then((list) => setHomePagePost(list));
     getChannels().then((list) => setChannels(list));
-  }, []);
+  }, [setHomePagePost]);
 
   if (!homePagePost || !channels) return <h1>loading...</h1>;
 

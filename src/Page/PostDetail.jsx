@@ -73,7 +73,7 @@ export default function PostDetailPage() {
       if (!data) setPostDetail(undefined);
       else setPostDetail(data);
     });
-  }, []);
+  }, [postId]);
 
   if (postDetail === null)
     return (
@@ -110,12 +110,14 @@ export default function PostDetailPage() {
               <div className="video-container">
                 {postDetail.video.includes("youtube") ? (
                   <iframe
+                    title={postDetail.title}
                     src={`https://www.youtube.com/embed/${videoId}`}
                     frameBorder="0"
                     allowFullScreen
                   ></iframe>
                 ) : (
                   <iframe
+                    title={postDetail.title}
                     frameBorder="0"
                     allowFullScreen
                     src={postDetail.video}

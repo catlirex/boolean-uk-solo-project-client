@@ -68,7 +68,7 @@ export default function ChannelCard({ channelDetail }) {
 
   return (
     <StyleLi onClick={() => history.push(`/channel/${channelId}`)}>
-      <img className="avatar" src={avatar}></img>
+      <img className="avatar" src={avatar} alt="avatar"></img>
       <div>
         <h2>{name}</h2>
         <p>id:{channelId}</p>

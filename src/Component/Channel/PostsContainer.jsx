@@ -25,7 +25,7 @@ export default function PostsContainer({ userChannelRelation }) {
     getPost(selectedChannel.id, order).then((postList) =>
       setSelectChannelPost(postList)
     );
-  }, [order, selectedChannel]);
+  }, [order, selectedChannel, setSelectChannelPost]);
 
   return (
     <StyleContainer>

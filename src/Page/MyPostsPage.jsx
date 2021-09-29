@@ -23,7 +23,6 @@ const StyleMain = styled.main`
 
 export default function MyPostsPage() {
   const loginUser = useStore((state) => state.loginUser);
-  const setModal = useStore((state) => state.setModal);
   const [userPosts, setUserPosts] = useState(null);
   useEffect(() => {
     getUserPosts().then((data) => setUserPosts(data));

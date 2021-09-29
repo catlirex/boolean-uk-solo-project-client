@@ -45,12 +45,9 @@ export default function CreateComment({ setPostDetail, postDetail }) {
   const handleSubmit = (e) => {
     e.preventDefault();
     if (!loginUser) return setModal("login");
-    saveNewComment(postDetail.id, { content: value }).then((newComment) => {
-      console.log(newComment);
-      setPostDetail({
-        ...postDetail,
-        comment: [newComment, ...postDetail.comment],
-      });
+    saveNewComment(postDetail.id, { content: value }).then((updatedPost) => {
+      console.log(updatedPost);
+      setPostDetail(updatedPost);
     });
   };
 

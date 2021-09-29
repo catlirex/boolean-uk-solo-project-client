@@ -45,12 +45,18 @@ export default function VideoPost({ post, userChannelRelation }) {
       <div className="video-container">
         {post.video.includes("youtube") ? (
           <iframe
+            title={post.title}
             src={`https://www.youtube.com/embed/${videoId}`}
             frameBorder="0"
             allowFullScreen
           ></iframe>
         ) : (
-          <iframe frameBorder="0" allowFullScreen src={post.video}></iframe>
+          <iframe
+            title={post.title}
+            frameBorder="0"
+            allowFullScreen
+            src={post.video}
+          ></iframe>
         )}
       </div>
       <PostFoot post={post} />

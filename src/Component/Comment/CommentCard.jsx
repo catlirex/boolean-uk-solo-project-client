@@ -14,7 +14,7 @@ const StyleLi = styled.li`
   }
 `;
 
-export default function CommentCard({ detail, setPostDetail }) {
+export default function CommentCard({ detail, setPostDetail, postDetail }) {
   const [showReply, setShowReply] = useState(false);
 
   return (
@@ -26,6 +26,8 @@ export default function CommentCard({ detail, setPostDetail }) {
         post={detail}
         setShowReply={setShowReply}
         showReply={showReply}
+        postDetail={postDetail}
+        setPostDetail={setPostDetail}
       />
       {showReply ? (
         <ReplyContainer comment={detail} setPostDetail={setPostDetail} />
