@@ -44,13 +44,10 @@ export default function CommentFoot({
   setShowReply,
   showReply,
   setPostDetail,
-  postDetail,
 }) {
   const [vote, setVote] = React.useState(null);
   const loginUser = useStore((state) => state.loginUser);
   const setModal = useStore((state) => state.setModal);
-  const selectedChannelPosts = useStore((state) => state.selectedChannelPosts);
-  const setSelectChannelPost = useStore((state) => state.setSelectChannelPost);
 
   const handleVote = (event, selectedVote) => {
     event.stopPropagation();

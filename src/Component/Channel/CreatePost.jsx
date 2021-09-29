@@ -73,13 +73,7 @@ export default function CreatePost() {
   return (
     <StyleForm onSubmit={handleSubmit}>
       <TextField id="title" name="title" label="Post Title" required />
-      <TextField
-        id="content"
-        id="content"
-        label="Content here...."
-        multiline
-        rows={2}
-      />
+      <TextField id="content" label="Content here...." multiline rows={2} />
 
       <ToggleButtonGroup
         value={mediaFormat}

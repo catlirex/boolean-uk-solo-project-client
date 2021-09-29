@@ -104,7 +104,11 @@ export default function PostDetailPage() {
           <div className="content-container">
             {postDetail.content ? <p>{postDetail.content}</p> : null}
             {postDetail.image ? (
-              <img src={postDetail.image} className="post-img" />
+              <img
+                src={postDetail.image}
+                alt="post image"
+                className="post-img"
+              />
             ) : null}
             {postDetail.video ? (
               <div className="video-container">

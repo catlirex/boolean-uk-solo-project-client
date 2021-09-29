@@ -2,7 +2,6 @@ import { makeStyles } from "@material-ui/core/styles";
 import { TextField, Button } from "@material-ui/core";
 import styled from "styled-components";
 import useStore from "../../store";
-import { useHistory } from "react-router-dom";
 import { getUserToken } from "../../API/userFunction";
 import { useEffect } from "react";
 

@@ -4,7 +4,6 @@ import { APP_COLOR } from "../../consistent";
 import styled from "styled-components";
 import useStore from "../../store";
 import { signOut } from "../../API/userFunction";
-import { useState } from "react";
 import UserMenu from "./UserMenu";
 import { useHistory } from "react-router-dom";
 
@@ -52,7 +51,7 @@ export default function Login() {
     <StyleDiv>
       <ColoredButton onClick={() => handleSignOut()}>Sign Out</ColoredButton>
 
-      <img className="avatar" src={loginUser.avatar}></img>
+      <img className="avatar" alt="user avatar" src={loginUser.avatar}></img>
 
       <UserMenu />
     </StyleDiv>

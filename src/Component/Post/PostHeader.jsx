@@ -92,7 +92,11 @@ export default function PostHeader({ post, userChannelRelation }) {
   return (
     <StyleHeader>
       <div className="info-container">
-        <img className="post-avatar" src={post.user.avatar}></img>
+        <img
+          className="post-avatar"
+          alt="user avatar"
+          src={post.user.avatar}
+        ></img>
         <p>
           <strong> {post.user.email.split("@")[0]}</strong>
         </p>

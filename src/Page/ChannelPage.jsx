@@ -105,7 +105,7 @@ export default function ChannelPage() {
         setSelectedChannel(data);
       }
     });
-  }, [channelId, setErrorMsg, setSelectedChannel, getChannelDetail]);
+  }, [channelId, setErrorMsg, setSelectedChannel, getChannelDetail, setModal]);
 
   const joinChannel = () => {
     if (!loginUser) return setModal("login");
