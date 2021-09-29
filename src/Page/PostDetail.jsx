@@ -106,7 +106,7 @@ export default function PostDetailPage() {
             {postDetail.image ? (
               <img
                 src={postDetail.image}
-                alt="post image"
+                alt={postDetail.title}
                 className="post-img"
               />
             ) : null}
